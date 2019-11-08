@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html> 
+    <head> 
+            <title>LOGIN!!!</title>            
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+            <link href="css/style.css" rel="stylesheet" type="text/css"/>            
+    </head> 
+
+    <body> 
+        
+      <IMG SRC="images/NMDC_LOGO1.JPG" ALT="nmdc logo" class='nmdcLogo'>
+    <br>
+    <label id='message'></label>
+    <form action="checkLogin" method="POST" id='checkloginForm'>
+            <table align="center" cellpadding = "10">
+                <tr>
+                    <td>TOKEN NO:</td>
+                    <td><input type='text' name='tokenno' pattern="^[A-Z]\d{4}$" placeholder='Token No Ex. A1111' title="Employee Token No" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>PASSWORD:</td>
+                   <td><input type='password' name='password' required  placeholder='Password' title="Employee Password">
+                    </td>
+                </tr>
+            </table>
+        <input type="hidden" value="secretId">
+            <center>
+                <button type="submit" class='btn btn-success btn-sm mr-3'>Login</button> 
+                <a href="./register.html" class='btn btn-warning btn-sm'>Register Here</a> 
+            </center>          
+        </form>    
+    <script   src="https://code.jquery.com/jquery-3.4.1.js"   ></script>
+    </body> 
+</html> 

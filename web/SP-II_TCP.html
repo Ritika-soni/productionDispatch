@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Daily production and dispatch details</title>
+         
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <center><h2><u><font color="green">DAILY PRODUCTION DETAILS</font></u></h2></center>
+         <center><h2><u><font color="green">SP-II/TCP</font></u></h2></center>
+         <div class='container'>
+          <div class="row">
+          <form action="ritika"  method="post" id='ritForm'>       
+            
+        <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>PRODUCTION</th>
+               <th>SHIFT I</th>
+                <th>SHIFT II</th>
+                <th>SHIFT III</th>
+                <th>ON-DATE</th>
+                <th>CUM.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <p> <font color="#800000"> <b> SP-II DETAILS: </b> </p>
+            <tr>
+                <td>LUMP</td>
+                <td><input type="number" id="lump_I" name="LUMP-I" placeholder='LUMP -  I' value="" pattern="^\d*$"  title="LUMP-  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="lump_II"  name="LUMP-II" placeholder='LUMP -  II' value="" pattern="^\d*$"  title="LUMP -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="lump_III"  name="LUMP-III" placeholder='LUMP -  III' value="" pattern="^\d*$"  title="LUMP -  III" onblur="calculateSum(this)"></td>
+                <td><input type="number" id="lump_onDate" name="LUMP-ON DATE" placeholder='LUMP - ON-DATE'  title="LUMP - ON-DATE"  disabled ></td>
+                <td><input type="number" id="lump_cumm" name="LUMP-CUM"  placeholder='LUMP -  CUM'  title="LUMP -  CUM" disabled  ></td>
+            </tr>
+            <tr>
+                <td>FEED</td>
+                <td><input type="number" id="feed_I"  name="FEED-I" placeholder='FEED -  I' value="" pattern="^\d*$"  title="FEED -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="feed_II" name="FEED-II" placeholder='FEED -  II' value="" pattern="^\d*$"  title="FEED -  II"  onblur="calculateSum(this)"></td>
+                <td><input type="number" id="feed_III" name="FEED-III" placeholder='FEED -  III' value="" pattern="^\d*$"  title="FEED -  III" onblur="calculateSum(this)"></td>
+                <td><input type="number" id="feed_onDate" name="FEED-ON-DATE" placeholder='FEED-  ON-DATE'  title="FEED -  ON-DATE"  disabled ></td>
+                <td><input type="number" id="feed_cumm" name="FEED-CUM" placeholder='FEED -  CUM'  title="FEED -  CUM" disabled  ></td>
+            </tr>
+                 <tr>
+                <td>FINE</td>
+                <td><input type="number" id="fine_I" name="FINE-I" placeholder='FINE -  I' value="" pattern="^\d*$"  title="FINE -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="fine_II" name="FINE-II" placeholder='FINE -  II' value="" pattern="^\d*$"  title="FINE -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="fine_III" name="FINE-III" placeholder='FINE -  III' value="" pattern="^\d*$"  title="FINE  -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="fine_onDate" name="FINE-ON-DATE" placeholder='FINE -  ON-DATE'   title="FINE -  ON-DATE" disabled ></td>
+                <td><input type="number" id="fine_cumm" name="FINE-CUM" placeholder='FINE -  CUM'   title="FINE -  CUM" disabled  ></td>
+            </tr>
+            <tr>
+                <td>NPO(707)</td>
+                <td><input type="number" id="npo_I" name="NPO(707)-I" placeholder='NPO(707) -  I' value="" pattern="^\d*$"  title="NPO(707) -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number"  id="npo_II" name="NPO(707)-II" placeholder='NPO(707) -  II' value="" pattern="^\d*$"  title="NPO(707) -  II" onblur="calculateSum(this)"></td>
+                <td><input type="number"  id="npo_III"   name="NPO(707)-III" placeholder='NPO(707) -  III' value="" pattern="^\d*$"  title="NPO(707)  -  III" onblur="calculateSum(this)"></td>
+                <td><input type="number"  id="npo_onDate"   name="NPO(707)-ON-DATE" placeholder='NPO(707) -  ON-DATE'  title="NPO(707) -  ON-DATE" disabled ></td>
+                <td><input type="number"  id="npo_cumm"   name="NPO(707)-CUM" placeholder='NPO(707) -  CUM'   title="NPO(707) -  CUM" disabled  ></td>
+            </tr>
+            <tr>
+                <td>B.L Sized Ore</td>
+                <td><input type="number" id="bl_sized_ore_I" name="B.L Sized Ore-I" placeholder='B.L Sized Ore -  I' value="" pattern="^\d*$"  title="B.L Sized Ore -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="bl_sized_ore_II" name="B.L Sized Ore-II" placeholder='B.L Sized Ore -  II' value="" pattern="^\d*$"  title="B.L Sized Ore -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="bl_sized_ore_III" name="B.L Sized Ore-III" placeholder='B.L Sized Ore -  III' value="" pattern="^\d*$"  title="B.L Sized Ore -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="bl_sized_ore_onDate" name="B.L Sized Ore-ON-DATE" placeholder='B.L Sized Ore -  ON-DATE'  title="B.L Sized Ore -  ON-DATE"  disabled ></td>
+                <td><input type="number" id="bl_sized_ore_cumm" name="B.L Sized Ore-CUM" placeholder='B.L Sized Ore -  CUM'   title="B.L Sized Ore -  CUM"  disabled ></td>
+            </tr>
+            <tr>
+                <td>315 SIDING</td>
+                <td><input type="number" id="siding_I" name="315 SIDING-I" placeholder='315 SIDING -  I' value="" pattern="^\d*$"  title="315 SIDING -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="siding_II" name="315 SIDING-II" placeholder='315 SIDING -  II' value="" pattern="^\d*$"  title="315 SIDING -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="siding_III" name="315 SIDING-III" placeholder='315 SIDING -  III' value="" pattern="^\d*$"  title="315 SIDING -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="siding_onDate" name="315 SIDING-ON-DATE" placeholder='315 SIDING -  ON-DATE'   title="315 SIDING -  ON-DATE"  disabled ></td>
+                <td><input type="number" id="siding_cumm" name="315 SIDING-CUM" placeholder='315 SIDING -  CUM'   title="315 SIDING -  CUM"  disabled ></td>
+            </tr>
+            <tr>
+                <td>FOH</td>
+                <td><input type="number" id="foh_I" name="FOH-I" placeholder='FOH -  I' value="" pattern="^\d*$"  title="FOH -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="foh_II" name="FOH-II" placeholder='FOH -  II' value="" pattern="^\d*$"  title="FOH -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="foh_III" name="FOH-III" placeholder='FOH -  III' value="" pattern="^\d*$"  title="FOH -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="foh_onDate" name="FOH-ON-DATE" placeholder='FOH -  ON-DATE'   title="FOH-  ON-DATE"  disabled ></td>
+                <td><input type="number" id=foh_cumm" name="FOH-CUM" placeholder='FOH -  CUM'  title="FOH -  CUM"  disabled ></td>
+            </tr>
+             <tr>
+                <td>316A</td>
+                <td><input type="number" id="316A_I" name="316A-I" placeholder='316A -  I' value="" pattern="^\d*$"  title="316A -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="316A_II" name="316A-II" placeholder='316A -  II' value="" pattern="^\d*$"  title="316A -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="316A_III" name="316A-III" placeholder='316A -  III' value="" pattern="^\d*$"  title="316A -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="316A_onDate" name="316A-ON-DATE" placeholder='316A -  ON-DATE'   title="316A -  ON-DATE"  disabled ></td>
+                <td><input type="number" id="316A_cumm" name="316A-CUM" placeholder='316A -  CUM'   title="316A -  CUM"  disabled ></td>
+            </tr>
+             <tr>
+                <td>315 N2</td>
+                <td><input type="number" id="315N2_I" name="315 N2-I" placeholder='315 N2 -  I' value="" pattern="^\d*$"  title="315 N2 -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="315N2_II" name="315 N2-II" placeholder='315 N2 -  II' value="" pattern="^\d*$"  title="315 N2 -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="315N2_III" name="315 N2-III" placeholder='315 N2 -  III' value="" pattern="^\d*$"  title="315 N2 -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="315N2_onDate" name="315 N2-ON-DATE" placeholder='315 N2 -  ON-DATE'   title="315 N2-  ON-DATE"  disabled ></td>
+                <td><input type="number" id="315N2_cumm" name="315 N2-CUM" placeholder='315 N2 -  CUM'  title="315 N2 -  CUM"  disabled required></td>
+            </tr>
+        </tbody>     
+    </table>
+                  
+          
+              <br>
+        <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>PRODUCTION</th>
+                <th>SHIFT I</th>
+                <th>SHIFT II</th>
+                <th>SHIFT III</th>
+                <th>ON-DATE</th>
+                <th>CUM.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <p> <font color="#800000"> <b> Utilized Hr. </b> </p>
+            <tr>
+                     <td>UTL.<br>
+                         6460/6760-CR<br>
+                         6571-P Saha <br>
+                         6507-Venkat'lu</td>
+                <td><input type="number" id="utl_I" name="UTL-I" placeholder='UTL. -  I' value="" pattern="^\d*(\.\d{0,2})?$"  title="UTL. -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="utl_II" name="UTL-II" placeholder='UTL. -  II' value=""  pattern="^\d*(\.\d{0,2})?$" title="UTL. -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="utl_III" name="UTL-III" placeholder='UTL. -  III' value="" pattern="^\d*(\.\d{0,2})?$"  title="UTL. -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="utl_onDate" name="UTL-ON-DATE" placeholder='UTL. - ON-DATE'   title="UTL. - ON-DATE" disabled ></td>
+                <td><input type="number" id="utl_cumm" name="UTL-CUM" placeholder='UTL. - CUM'  title="UTL. - CUM" disabled > </td>
+            </tr>
+      </tbody>
+       </table>
+              
+              <br>
+              <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>PRODUCTION</th>
+               <th>SHIFT I</th>
+                <th>SHIFT II</th>
+                <th>SHIFT III</th>
+                <th>ON-DATE</th>
+                <th>CUM.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <p> <font color="#800000"> <b>TCP DETAILS:</b> </p>
+            <tr>
+                <td>SP-I FEED</td>
+                <td><input type="number" id="spI_feed_I" name="SP-I FEED-I" placeholder='SP-I FEED -  I' value="" pattern="^\d*$"  title="SP-I FEED-  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="spI_feed_II" name="SP-I FEED-II" placeholder='SP-I FEED -  II' value="" pattern="^\d*$"  title="SP-I FEED-  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="spI_feed_III" name="SP-I FEED-III" placeholder='SP-I FEED -  III' value="" pattern="^\d*$"  title="SP-I FEED-  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="spI_feed_onDate" name="SP-I FEED-ON DATE" placeholder='SP-I FEED - ON-DATE'  title="SP-I FEED - ON-DATE" disabled ></td>
+                <td><input type="number"  id="spI_feed_cumm" name="SP-I FEED-CUM"  placeholder='SP-I FEED -  CUM'   title="SP-I FEED-  CUM" disabled  ></td>
+            </tr>
+            <tr>
+                <td>SP-II FEED</td>
+                <td><input type="number" id="sp_II_feed_I"  name="SP-II FEED-I" placeholder='SP-II FEED -  I' value="" pattern="^\d*$"  title="SP-II FEED -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="sp_II_feed_II" name="SP-II FEED-II" placeholder='SP-II FEED -  II' value="" pattern="^\d*$"  title="SP-II FEED -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="sp_II_feed_III" name="SP-II FEED-III" placeholder='SP-II FEED -  III' value="" pattern="^\d*$"  title="SP-II FEED -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="sp_II_feed_onDate" name="SP-II FEED-ON-DATE" placeholder='SP-II FEED-  ON-DATE'  title="SP-II FEED -  ON-DATE"  disabled ></td>
+                <td><input type="number" id="sp_II_feed_cumm" name="SP-II FEED-CUM" placeholder='SP-II FEED -  CUM' title="SP-II FEED -  CUM"  disabled ></td>
+            </tr>
+                 <tr>
+                <td>CLO (914)</td>
+                <td><input type="number" id="clo_I" name="CLO (914)-I" placeholder='CLO (914) -  I' value="" pattern="^\d*$"  title="CLO (914) -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="clo_II" name="CLO (914)-II" placeholder='CLO (914) -  II' value="" pattern="^\d*$"  title="CLO (914) -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="clo_III" name="CLO (914)-III" placeholder='CLO (914) -  III' value="" pattern="^\d*$"  title="CLO (914)  -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="clo_onDate" name="CLO (914)-ON-DATE" placeholder='CLO (914) -  ON-DATE'   title="CLO (914) -  ON-DATE" disabled ></td>
+                <td><input type="number" id="clo_cumm" name="CLO (914)-CUM" placeholder='CLO (914) -  CUM'  title="CLO (914) -  CUM" disabled  ></td>
+            </tr>
+            <tr>
+                <td>FINE (918)</td>
+                <td><input type="number" id="fine_I" name="FINE (918)-I" placeholder='FINE (918) -  I' value="" pattern="^\d*$"  title="FINE (918) -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="fine_II" name="FINE (918)-II" placeholder='FINE (918) -  II' value="" pattern="^\d*$"  title="FINE (918) -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="fine_III" name="FINE (918)-III" placeholder='FINE (918) -  III' value="" pattern="^\d*$"  title="FINE (918)  -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="fine_onDate" name="FINE (918)-ON-DATE" placeholder='FINE (918) -  ON-DATE'  title="FINE (918) -  ON-DATE" disabled ></td>
+                <td><input type="number" id="fine_cumm"  name="FINE (918)-CUM" placeholder='FINE (918) -  CUM'  title="FINE (918) -  CUM" disabled  ></td>
+            </tr>
+            <tr>
+                <td>315 SIDING</td>
+                <td><input type="number" id="315_siding_I" name="315 SIDING-I" placeholder='315 SIDING -  I' value="" pattern="^\d*$"  title="315 SIDING -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="315_siding_II" name="315 SIDING-II" placeholder='315 SIDING -  II' value="" pattern="^\d*$"  title="315 SIDING -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="315_siding_III" name="315 SIDING-III" placeholder='315 SIDING -  III' value="" pattern="^\d*$"  title="315 SIDING -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="315_siding_onDate" name="315 SIDING-ON-DATE" placeholder='315 SIDING -  ON-DATE'   title="315 SIDING -  ON-DATE"  disabled ></td>
+                <td><input type="number" id="315_siding_cumm" name="315 SIDING-CUM" placeholder='315 SIDING -  CUM'  title="315 SIDING -  CUM"  disabled ></td>
+            </tr>
+            <tr>
+                <td>N-2</td>
+                <td><input type="number" id="n2__I" name="N-2-I" placeholder='N-2 -  I' value="" pattern="^\d*$"  title="N-2 -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="n2__II" name="N-2-II" placeholder='N-2 -  II' value="" pattern="^\d*$"  title="N-2 -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="n2__III" name="N-2-III" placeholder='N-2 -  III' value="" pattern="^\d*$"  title="N-2 -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="n2__onDate" name="N-2-ON-DATE" placeholder='N-2 -  ON-DATE' title="N-2-  ON-DATE"  disabled ></td>
+                <td><input type="number" id="n2__cumm" name="N-2-CUM" placeholder='N-2 -  CUM'  title="N-2 -  CUM"  disabled ></td>
+            </tr>
+             <tr>
+                <td>FOH</td>
+                <td><input type="number" id="foh_I" name="FOH-I" placeholder='FOH -  I' value="" pattern="^\d*$"  title="FOH -  I" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="foh_II" name="FOH-II" placeholder='FOH -  II' value="" pattern="^\d*$"  title="FOH -  II" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="foh_III" name="FOH-III" placeholder='FOH -  III' value="" pattern="^\d*$"  title="FOH -  III" required onblur="calculateSum(this)"></td>
+                <td><input type="number" id="foh_onDate" name="FOH-ON-DATE" placeholder='FOH -  ON-DATE'  title="FOH-  ON-DATE"  disabled ></td>
+                <td><input type="number" id="foh_cumm" name="FOH-CUM" placeholder='FOH -  CUM' title="FOH -  CUM"  disabled ></td>
+            </tr>
+      </tbody>
+       </table>
+              
+
+    <div class="btn-group">
+        <button type="reset" id="example-reset-button" class="btn btn-default">Reset</button>
+        <select id="breakdown" multiple>
+            <option value="1"> NO ORE</option>
+            <option value="2"> PSP FULL</option>
+            <option value="3"> BOULDER JAM</option>
+            <option value="4"> CHUTE JAM</option>
+            <option value="5"> NO POWER</option>
+            <option value="6"> MECH. B/D</option>
+            <option value="7"> ELEC. B/D</option>
+            <option value="8"> OTHERS</option>
+            <option value="9"> TOTAL STOPPAGES</option>
+        </select>   
+    </div>
+     <center>
+                <button type="submit" class='btn btn-primary btn-sm mr-3'>SUBMIT</button> 
+                 <a  href="productionmenu.html">Go Back</a>
+                </center>             
+   </form>
+
+         </div>
+         </div>
+        
+           
+          
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript">
+        
+        
+            function calculateSum(field) {
+                console.log(field);
+                let currentRow = $(field).closest("tr");
+                let first =  parseInt($("input[id$='_I']",currentRow).val());
+                let second =  parseInt($("input[id$='_II']",currentRow).val());
+                let third =  parseInt($("input[id$='_III']",currentRow).val());
+                
+                if(isNaN(first)) {
+                    first =0;
+                }
+                if(isNaN(second)) {
+                    second =0;
+                }
+                if(isNaN(third)) {
+                    third =0;
+                }
+                let calOnDate = first + second + third;
+                $("input[id$='_onDate']",currentRow).val(calOnDate);
+            }
+        
+        
+$(function() {
+    $('#breakdown').multiselect({
+        includeSelectAllOption: true,
+        nonSelectedText: 'No Stoppages',
+        numberDisplayed: 3,        
+        enableCaseInsensitiveFiltering: true,  
+        
+    });
+    $('#frmBreakdown').on('reset', function() {
+            $('#breakdown option:selected').each(function() {
+                $(this).prop('selected', false);
+            })
+ 
+            $('#breakdown').multiselect('refresh');
+        });
+});
+
+$('#frmBreakdown  option:selected').map(function(a, item){return item.text;});
+
+
+</script>  
+
+
+</body>
+    
+</html>

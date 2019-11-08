@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html> 
+    <head> 
+            <title> Register yourself </title>
+             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+            <link href="css/style.css" rel="stylesheet" type="text/css"/>
+            
+          
+    </head> 
+
+    <body> 
+        <div class="container">
+        <a href="help.jsp" class='float-right btn btn-info'>?Help</a> 
+        <IMG SRC="images/NMDC_LOGO1.JPG" ALT="nmdc logo" class='nmdcLogo'>
+      
+    <br>
+    <label class='message'></label>
+    <h1>REGISTRATION FORM</h1>
+             
+        <form action="register"  method="post" id='regForm'>
+            <table >
+                <tr>
+                    <td>FIRST NAME:</td>
+                    <td><input type='text' name='firstname' id = 'firstname'  pattern="^[A-Za-z]{1,10}$" placeholder='First name' title="Employee First name" required>
+                        (max 10 characters a-z or A-Z)
+                    </td>
+                </tr>
+                <tr>
+                    <td>LAST NAME:</td>
+                    <td><input type='text' name='lastname' id = 'lastname'  pattern="^[A-Za-z]{1,10}$" placeholder='Last name' title="Employee Last name" required>
+                        (max 10 characters a-z or A-Z)
+                    </td>
+                </tr>
+                <tr>
+                    <td>TOKEN NO:</td>
+                    <td><input type='text' name='tokenno' pattern="^[A-Z]\d{4}$" placeholder='Token No Ex. A1111' title="Employee Token No" required>
+                        (eg: A1111)
+                    </td>
+                </tr>
+                <tr>
+                    <td>PASSWORD:</td>
+                    <td><input id ="password" type='password' name='password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder='Password' title="Employee Password" required>
+                        (Must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters)
+                    </td>
+                </tr>
+                <tr>
+                    <td>CONFIRM PASSWORD:</td>
+                    <td><input id ="confirmpassword" type='password' name='confirmpassword'  placeholder='Confirm Password' title="Employee confirm Password" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DOB:</td>
+                    <td><input type='date' name='dob' title="Employee date of birth" required ></td>
+                </tr>
+            </table>
+
+            <center>
+                <button type="submit" class='btn btn-success btn-sm mr-3' onclick="return validatePasswords()">Sign Up</button> 
+            </center>
+        </form>   
+           
+            <script type="text/javascript">
+                function validatePasswords(){
+                    let password = document.getElementById("password");
+                    let confirmPassword = document.getElementById("confirmpassword");
+                    if(password.value !== confirmPassword.value) {
+                      alert("Password and Confirm Password don't match!");
+                      return false;
+                    }
+                }
+            </script>
+       
+            <center>
+            <br>
+            <p>Already having an Account
+            <a href="./index.html" class='btn btn-warning btn-sm'>Log in.</a> 
+            
+            <p>
+            </center>
+            <center>
+            <br>
+            
+
+            </center>
+    </div>
+    </body> 
+</html> 
