@@ -87,3 +87,8 @@ and open the template in the editor.
   #ritForm table td:nth-child(1) {
       width:30%
   }
+  
+  /* Hide the row*/
+  .hide {
+      display:none;
+  }

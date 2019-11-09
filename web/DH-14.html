@@ -71,13 +71,57 @@ and open the template in the editor.
             </tr>
       </tbody>
        </table>
-              
-              <button type="button">Add more !</button>
-  <table class="table">
+    
+ <p> <font color="#800000"> <b> Stoppages </b> </p>
+    <div class="btn-group">
+        <button type="reset" id="example-reset-button" class="btn btn-default">Reset</button>
+        <select id="breakdown" multiple>
+            
+            <option>NO ORE</option>
+            <option>PSP FULL</option>
+            <option>BOULDER JAM</option>
+            <option>CHUTE JAM</option>
+            <option>NO POWER</option>
+            <option>MECH. B/D</option>
+            <option>ELEC. B/D</option>
+            <option>OTHERS</option>
+           
+        </select>   
+        <button class='btn btn-primary' id='btnAddStoppages'>Add Stoppages</button>
+    </div> 
+    <div>
+     <table class="table" id='tblStoppages'>
+        <thead class="thead-dark">
+            <tr>
+                <th>STOPPAGES</th>
+                <th>SHIFT I</th>
+                <th>SHIFT II</th>
+                <th>SHIFT III</th>
+                <th>ON-DATE</th>
+                <th>CUM.</th>
+            </tr>
+        </thead>
+        <tbody>            
+            <tr class='hide'>
+                <td>No Stoppage</td> 
+                <td><input type="number" step=".01"  name="Stop-I" placeholder='Stoppage -  I'   title="Stoppage -  I"   ></td>
+                <td><input type="number" step=".01"  name="Stop-II" placeholder='Stoppage -  II'  title="Stoppage -  II"   ></td>
+                <td><input type="number" step=".01"  name="Stop-III" placeholder='Stoppage -  III'  title="Stoppage -  III"  ></td>
+                <td><input type="number" step=".01"  name="Stop-ON-DATE" placeholder='Stoppage - ON-DATE'  title="Stoppage - ON-DATE" disabled ></td>
+                <td><input type="number" step=".01" name="Stop-CUM" placeholder='Stoppage - CUM' title="Stoppage - CUM" disabled > </td>
+            </tr>
+      </tbody>
+       </table>
+ </div>
+ 
+ 
+ 
+    <br>
+        <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th>PRODUCTION</th>
-               <th>SHIFT I</th>
+                <th>SHIFT I</th>
                 <th>SHIFT II</th>
                 <th>SHIFT III</th>
                 <th>ON-DATE</th>
@@ -85,43 +129,21 @@ and open the template in the editor.
             </tr>
         </thead>
         <tbody>
+            <p> <font color="#800000"> <b> Scheduled Hr. </b> </p>
             <tr>
-                <td>Feed</td>
-                <td><input type="number" id="feed_I" name="Feed-I" placeholder='Feed - I' value="" pattern="^\d*$"  title="Feed - I" required onblur="calculateSum(this)"></td>
-                <td><input type="number" id="feed_II"  name="Feed-II" placeholder='Feed-  II' value="" pattern="^\d*$"  title="Feed - II" required onblur="calculateSum(this)"></td>
-                <td><input type="number" id="feed_III" name="Feed-II" placeholder='Feed -  III' value="" pattern="^\d*$"  title="Feed -  III" required onblur="calculateSum(this)"></td>
-                <td> <input type="number" id="feed_onDate" name="Feed-ON-DATE" placeholder='Feed - ON-DATE'   title="Feed - ON-DATE" disabled  > </td>
-                <td> <input type="number" id="feed_cumm" name="Feed-CUM" placeholder='Feed - CUM'  title="Feed - CUM" disabled  > </td>
+                  <td>Scheduled Hr. Check <br></td> 
+                <td><input type="number" step=".01" id="UTL_I" name="UTL-I" placeholder='UTL. -  I'   title="UTL. -  I" required  disabled></td>
+                <td><input type="number" step=".01" id="UTL_II" name="UTL-II" placeholder='UTL. -  II'  title="UTL. -  II" required disabled ></td>
+                <td><input type="number" step=".01" id="UTL_III" name="UTL-III" placeholder='UTL. -  III'  title="UTL. -  III" required disabled></td>
+                <td><input type="number" step=".01" id="UTL_onDate" name="UTL-ON-DATE" placeholder='UTL. - ON-DATE'  title="UTL. - ON-DATE" disabled ></td>
+                <td><input type="number" step=".01" id="UTL_cumm" name="UTL-CUM" placeholder='UTL. - CUM' title="UTL. - CUM" disabled > </td>
             </tr>
-            <tr>
-                <td>ROM</td>
-                <td><input type="number" id="ROM_I" name="ROM Hr-I" placeholder='ROM -  I' value="" pattern="^\d*$"  title="ROM -  I" required onblur="calculateSum(this)"></td>
-                <td><input type="number" id="ROM_II" name="ROM Hr-II" placeholder='ROM -  II' value="" pattern="^\d*$"  title="ROM -  II" required onblur="calculateSum(this)"></td>
-                <td><input type="number" id="ROM_III" name="ROM Hr-III" placeholder='ROM -  III' value="" pattern="^\d*$"  title="ROM  -  III" required onblur="calculateSum(this)"></td>
-                <td><input type="number" id="ROM_onDate" name="ROM Hr-ON-DATE" placeholder='ROM -  ON-DATE'  title="ROM -  ON-DATE" disabled ></td>
-                <td><input type="number"  id="ROM_cumm" name="ROM Hr-CUM" placeholder='ROM -  CUM'   title="ROM -  CUM" disabled  ></td>
-            </tr>
-        </tbody>     
-    </table>
-
-    <!--<div class="btn-group">
-        <button type="reset" id="example-reset-button" class="btn btn-default">Reset</button>
-        <select id="breakdown" multiple>
-            <option value="1"> NO ORE</option>
-            <option value="2"> PSP FULL</option>
-            <option value="3"> BOULDER JAM</option>
-            <option value="4"> CHUTE JAM</option>
-            <option value="5"> NO POWER</option>
-            <option value="6"> MECH. B/D</option>
-            <option value="7"> ELEC. B/D</option>
-            <option value="8"> OTHERS</option>
-            <option value="9"> TOTAL STOPPAGES</option>
-        </select>   
-    </div>-->
+      </tbody>
+       </table>
      <center>
-                <button type="submit" class='btn btn-primary btn-sm mr-3'>SUBMIT</button> 
-                <a  href="productionmenu.html">Go Back</a>
-                </center>             
+       <button type="submit" class='btn btn-primary btn-sm mr-3'>SUBMIT</button> 
+       <a  href="productionmenu.html">Go Back</a>
+     </center>             
    </form>
 
          </div>
@@ -156,22 +178,43 @@ and open the template in the editor.
                 let calOnDate = first + second + third;
                 $("input[id$='_onDate']",currentRow).val(calOnDate);
             } 
-            
         
-        
+    function checkExist(compareText) {
+ let isExist = false;
+ $("#tblStoppages tbody tr").find("td:first").each( (index,column) => { 
+ let a = $(column).html();
+ if(a === compareText) { 
+   isExist = true;
+ }
+});
+return isExist;
+}
+    
+    
+        $("#btnAddStoppages").on("click", function () {
+	let selected = $("#breakdown").val();    
+        for(let i=0;i<selected.length;i++){ 
+            if(!checkExist(selected[i])) {       
+		let row = $("#tblStoppages tbody tr:first").clone(false);
+                $(row).removeClass('hide');
+                $(row).find('td')[0].innerText = selected[i];
+                $("#tblStoppages tbody").append(row);
+               }     
+            }
+        }); 
+
 $(function() {
     $('#breakdown').multiselect({
         includeSelectAllOption: true,
         nonSelectedText: 'No Stoppages',
-        numberDisplayed: 3,        
-        enableCaseInsensitiveFiltering: true,  
-        
+        numberDisplayed: 1,        
+        enableCaseInsensitiveFiltering: true,        
     });
+    
     $('#frmBreakdown').on('reset', function() {
             $('#breakdown option:selected').each(function() {
                 $(this).prop('selected', false);
-            })
- 
+            }) 
             $('#breakdown').multiselect('refresh');
         });
 });
