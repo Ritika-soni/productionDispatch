@@ -142,27 +142,27 @@ and open the template in the editor.
                 $("input[id$='_onDate']",currentRow).val(calOnDate);
             }
         
-$(function() {
-    $('#breakdown').multiselect({
-        includeSelectAllOption: true,
-        nonSelectedText: 'No Stoppages',
-        numberDisplayed: 3,        
-        enableCaseInsensitiveFiltering: true,  
-        
-    });
-    $('#frmBreakdown').on('reset', function() {
-            $('#breakdown option:selected').each(function() {
-                $(this).prop('selected', false);
-            })
- 
-            $('#breakdown').multiselect('refresh');
-        });
-});
+            $(function() {
+                $('#breakdown').multiselect({
+                    includeSelectAllOption: true,
+                    nonSelectedText: 'No Stoppages',
+                    numberDisplayed: 3,        
+                    enableCaseInsensitiveFiltering: true,  
 
-$('#frmBreakdown  option:selected').map(function(a, item){return item.text;});
+                });
+                $('#frmBreakdown').on('reset', function() {
+                        $('#breakdown option:selected').each(function() {
+                            $(this).prop('selected', false);
+                        })
+
+                        $('#breakdown').multiselect('refresh');
+                    });
+            });
+
+            $('#frmBreakdown  option:selected').map(function(a, item){return item.text;});
 
 
-</script>  
+    </script>  
 
 
 </body>
