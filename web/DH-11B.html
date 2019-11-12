@@ -10,6 +10,7 @@ and open the template in the editor.
          
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
          <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,30 +73,78 @@ and open the template in the editor.
       </tbody>
        </table>
 
-    <div class="btn-group">
-        <button type="reset" id="example-reset-button" class="btn btn-default">Reset</button>
-        <select id="breakdown" multiple>
-            <option value="1"> NO ORE</option>
-            <option value="2"> PSP FULL</option>
-            <option value="3"> BOULDER JAM</option>
-            <option value="4"> CHUTE JAM</option>
-            <option value="5"> NO POWER</option>
-            <option value="6"> MECH. B/D</option>
-            <option value="7"> ELEC. B/D</option>
-            <option value="8"> OTHERS</option>
-            <option value="9"> TOTAL STOPPAGES</option>
-        </select>   
-    </div>
+    <p>  Stoppages </p> 
+      
+<select id="breakdown" multiple>            
+    <option>NO ORE</option>
+    <option>PSP FULL</option>
+    <option>BOULDER JAM</option>
+    <option>CHUTE JAM</option>
+    <option>NO POWER</option>
+    <option>MECH. B/D</option>
+    <option>ELEC. B/D</option>
+    <option>OTHERS</option>           
+</select>   
+<button type='button' class='btn btn-success' id='btnAddStoppages'><i class="fa fa-plus"></i>  Add Stoppages</button>      
+ <div>
+     <table class="table hide" id='tblStoppages'>
+        <thead class="thead-dark">
+            <tr>
+                <th>STOPPAGES</th>
+                <th>SHIFT I</th>
+                <th>SHIFT II</th>
+                <th>SHIFT III</th>
+                <th>ON-DATE</th>
+                <th>CUM.</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>            
+            <tr class='hide'>
+                <td>No Stoppage</td> 
+                <td><input type="number" step=".01"  name="Stop-I" placeholder='Stoppage -  I'   title="Stoppage -  I"   ></td>
+                <td><input type="number" step=".01"  name="Stop-II" placeholder='Stoppage -  II'  title="Stoppage -  II"   ></td>
+                <td><input type="number" step=".01"  name="Stop-III" placeholder='Stoppage -  III'  title="Stoppage -  III"  ></td>
+                <td><input type="number" step=".01"  name="Stop-ON-DATE" placeholder='Stoppage - ON-DATE'  title="Stoppage - ON-DATE" disabled ></td>
+                <td><input type="number" step=".01" name="Stop-CUM" placeholder='Stoppage - CUM' title="Stoppage - CUM" disabled > </td>
+                <td><button type='button' class='btn btn-danger btn-sm' name='btnRemoveStoppages' onclick="removeStoppage(this)"><i class="fa fa-trash"></i>  Delete</button></td>
+            </tr>
+      </tbody>
+     </table>
+ </div> 
+    <br>
+        <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>PRODUCTION</th>
+                <th>SHIFT I</th>
+                <th>SHIFT II</th>
+                <th>SHIFT III</th>
+                <th>ON-DATE</th>
+                <th>CUM.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <p> <font color="#800000"> <b> Scheduled Hr. </b> </p>
+            <tr>
+                  <td>Scheduled Hr. Check <br></td> 
+                <td><input type="number" step=".01" id="UTL_I" name="UTL-I" placeholder='UTL. -  I'   title="UTL. -  I" required  disabled></td>
+                <td><input type="number" step=".01" id="UTL_II" name="UTL-II" placeholder='UTL. -  II'  title="UTL. -  II" required disabled ></td>
+                <td><input type="number" step=".01" id="UTL_III" name="UTL-III" placeholder='UTL. -  III'  title="UTL. -  III" required disabled></td>
+                <td><input type="number" step=".01" id="UTL_onDate" name="UTL-ON-DATE" placeholder='UTL. - ON-DATE'  title="UTL. - ON-DATE" disabled ></td>
+                <td><input type="number" step=".01" id="UTL_cumm" name="UTL-CUM" placeholder='UTL. - CUM' title="UTL. - CUM" disabled > </td>
+            </tr>
+      </tbody>
+       </table>
      <center>
-                <button type="submit" class='btn btn-primary btn-sm mr-3'>SUBMIT</button> 
-                <a  href="productionmenu.html">Go Back</a>
-                </center>             
+       <button type="submit" class='btn btn-primary btn-sm mr-3'>SUBMIT</button> 
+       <a  href="productionmenu.html">Go Back</a>
+     </center>             
    </form>
 
          </div>
          </div>
         
-           
            
       
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
@@ -106,8 +155,7 @@ and open the template in the editor.
 
     <script type="text/javascript">
         
-       function calculateSum(field) {
-                console.log(field);
+        function calculateSum(field) {                
                 let currentRow = $(field).closest("tr");
                 let first =  parseInt($("input[id$='_I']",currentRow).val());
                 let second =  parseInt($("input[id$='_II']",currentRow).val());
@@ -126,28 +174,59 @@ and open the template in the editor.
                 $("input[id$='_onDate']",currentRow).val(calOnDate);
             } 
         
-$(function() {
-    $('#breakdown').multiselect({
-        includeSelectAllOption: true,
-        nonSelectedText: 'No Stoppages',
-        numberDisplayed: 3,        
-        enableCaseInsensitiveFiltering: true,  
-        
-    });
-    $('#frmBreakdown').on('reset', function() {
-            $('#breakdown option:selected').each(function() {
-                $(this).prop('selected', false);
-            })
- 
-            $('#breakdown').multiselect('refresh');
+        function checkExist(compareText) {
+         let isExist = false;
+         $("#tblStoppages tbody tr").find("td:first").each( (index,column) => { 
+         let a = $(column).html();
+         if(a === compareText) { 
+           isExist = true;
+         }
         });
-});
+        return isExist;
+        }
 
-$('#frmBreakdown  option:selected').map(function(a, item){return item.text;});
 
+        $("#btnAddStoppages").on("click", function () {
+            let selected = $("#breakdown").val();  
+            if(!selected ) {
+                alert("select atleast one stoppage reason to be added");
+                return;
+            }
+            for(let i=0;i<selected.length;i++){ 
+                if(!checkExist(selected[i])) {       
+                    let row = $("#tblStoppages tbody tr:first").clone(false);
+                    $(row).removeClass('hide');
+                    $("#tblStoppages").removeClass('hide');
+                    $(row).find('td')[0].innerText = selected[i];
+                    $("#tblStoppages tbody").append(row);
+                   }     
+                }
+            });            
+   
+        
+        function removeStoppage(btn) {
+            let row = $(btn).closest("tr")
+            let stoppageType = $(row).find("td:first").html();
+            $(btn).closest("tr",row).remove();
+            $('#breakdown').multiselect('deselect', [stoppageType]); 
+            const countRows = $('#tblStoppages').find("tr").length;
+            if(countRows <3) { //one header row , second hidden row
+                $("#tblStoppages").addClass('hide');                
+            }
+            
+        }    
+                
+                   
+        $(function() {
+            $('#breakdown').multiselect({
+                includeSelectAllOption: true,
+                nonSelectedText: 'No Stoppages',
+                numberDisplayed: 1,        
+                enableCaseInsensitiveFiltering: true,        
+            });
+        });
 
-</script>  
-
+        </script>  
 
 </body>
     

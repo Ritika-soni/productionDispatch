@@ -36,45 +36,18 @@ and open the template in the editor.
         <tbody>
             <tr>
                 <td>Feed</td>
-                <td><input type="number" id="feed_I" name="Feed-I" placeholder='Feed - I' value="" pattern="^\d*$"  title="Feed - I" required onblur="calculateSum(this)"></td>
-                <td><input type="number" id="feed_II"  name="Feed-II" placeholder='Feed-  II' value="" pattern="^\d*$"  title="Feed - II" required onblur="calculateSum(this)"></td>
-                <td><input type="number" id="feed_III" name="Feed-II" placeholder='Feed -  III' value="" pattern="^\d*$"  title="Feed -  III" required onblur="calculateSum(this)"></td>
-                <td> <input type="number" id="feed_onDate" name="Feed-ON-DATE" placeholder='Feed - ON-DATE'   title="Feed - ON-DATE" disabled  > </td>
-                <td> <input type="number" id="feed_cumm" name="Feed-CUM" placeholder='Feed - CUM'  title="Feed - CUM" disabled  > </td>
+                <td><input type="number" id="feed_I" name="Feed-I" placeholder='Feed - I' value="" pattern="^\d*$"  title="Feed - I" required onblur="calculateOnDateFeed(this)"></td>
+                <td><input type="number" id="feed_II"  name="Feed-II" placeholder='Feed-  II' value="" pattern="^\d*$"  title="Feed - II" required onblur="calculateOnDateFeed(this)"></td>
+                <td><input type="number" id="feed_III" name="Feed-II" placeholder='Feed -  III' value="" pattern="^\d*$"  title="Feed -  III" required onblur="calculateOnDateFeed(this)"></td>
+                <td> <input type="number" id="feed_onDate" name="Feed-onDate" placeholder='Feed - On-Date'  default value="0"  title="Feed - ON-DATE" disabled  > </td>
+                <td> <input type="number" id="feed_cumm" name="Feed-cum" placeholder='Feed - CUM' default value="0"  title="Feed - CUM" disabled  > </td>
             </tr>
         </tbody>     
     </table>
                   
-          
         
-        <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th>PRODUCTION</th>
-               <th>SHIFT I</th>
-                <th>SHIFT II</th>
-                <th>SHIFT III</th>
-                <th>ON-DATE</th>
-                <th>CUM.</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            <p> <font color="#800000"> <b> Utilized Hr. </b> </p>
-            <tr>
-                     <td>UTL.<br>
-                         6550/6650-CR <br>
-                     </td>
-                <td><input type="number" step=".01" id="UTL_I" name="UTL-I" placeholder='UTL. -  I' value="" pattern="^\d*(\.\d{0,2})?$"  title="UTL. -  I" required onblur="calculateSum(this)"></td>
-                <td><input type="number" step=".01" id="UTL_II" name="UTL-II" placeholder='UTL. -  II' value=""  pattern="^\d*(\.\d{0,2})?$" title="UTL. -  II" required onblur="calculateSum(this)"></td>
-                <td><input type="number" step=".01" id="UTL_III" name="UTL-III" placeholder='UTL. -  III' value="" pattern="^\d*(\.\d{0,2})?$"  title="UTL. -  III" required onblur="calculateSum(this)"></td>
-                <td><input type="number" step=".01" id="UTL_onDate" name="UTL-ON-DATE" placeholder='UTL. - ON-DATE'  title="UTL. - ON-DATE" disabled ></td>
-                <td><input type="number" step=".01" id="UTL_cumm" name="UTL-CUM" placeholder='UTL. - CUM' title="UTL. - CUM" disabled > </td>
-            </tr>
-      </tbody>
-       </table>
     
- <p>  Stoppages </p> 
+<p><font color="#800000">  <b> Stoppages </b> </p> 
       
 <select id="breakdown" multiple>            
     <option>NO ORE</option>
@@ -86,7 +59,7 @@ and open the template in the editor.
     <option>ELEC. B/D</option>
     <option>OTHERS</option>           
 </select>   
-<button type='button' class='btn btn-success' id='btnAddStoppages'><i class="fa fa-plus"></i>  Add Stoppages</button>      
+<button type='button' class='btn btn-primary' id='btnAddStoppages'><i class="fa fa-plus"></i>  Add Stoppages</button>      
  <div>
      <table class="table hide" id='tblStoppages'>
         <thead class="thead-dark">
@@ -103,42 +76,55 @@ and open the template in the editor.
         <tbody>            
             <tr class='hide'>
                 <td>No Stoppage</td> 
-                <td><input type="number" step=".01"  name="Stop-I" placeholder='Stoppage -  I'   title="Stoppage -  I"   ></td>
-                <td><input type="number" step=".01"  name="Stop-II" placeholder='Stoppage -  II'  title="Stoppage -  II"   ></td>
-                <td><input type="number" step=".01"  name="Stop-III" placeholder='Stoppage -  III'  title="Stoppage -  III"  ></td>
-                <td><input type="number" step=".01"  name="Stop-ON-DATE" placeholder='Stoppage - ON-DATE'  title="Stoppage - ON-DATE" disabled ></td>
-                <td><input type="number" step=".01" name="Stop-CUM" placeholder='Stoppage - CUM' title="Stoppage - CUM" disabled > </td>
+                <td><input type="number" step=".01" max="8" name="Stop-I" placeholder='Stoppage -  I' shift='I'  title="Stoppage -  I"  onblur="calculateOnDateStoppage(this); return calTotalUtil(this); " ></td>
+                <td><input type="number" step=".01" max="8"  name="Stop-II" placeholder='Stoppage -  II'  shift='II' title="Stoppage -  II"  onblur="calculateOnDateStoppage(this); return calTotalUtil(this)"  ></td>
+                <td><input type="number" step=".01" max="8"  name="Stop-III" placeholder='Stoppage -  III' shift='III' title="Stoppage -  III"  onblur="calculateOnDateStoppage(this); return calTotalUtil(this)" ></td>
+                <td><input type="number" step=".01"  name="Stop-onDate" placeholder='Stoppage - ON-DATE' default value="0" title="Stoppage - ON-DATE" disabled ></td>
+                <td><input type="number" step=".01" name="Stop-cum" placeholder='Stoppage - CUM' default value="0" title="Stoppage - CUM" disabled > </td>
                 <td><button type='button' class='btn btn-danger btn-sm' name='btnRemoveStoppages' onclick="removeStoppage(this)"><i class="fa fa-trash"></i>  Delete</button></td>
             </tr>
       </tbody>
      </table>
- </div> 
-    <br>
+ </div>
+
         <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th>PRODUCTION</th>
-                <th>SHIFT I</th>
+               <th>SHIFT I</th>
                 <th>SHIFT II</th>
                 <th>SHIFT III</th>
-                <th>ON-DATE</th>
+               <th>ON-DATE</th>
                 <th>CUM.</th>
+                
             </tr>
         </thead>
         <tbody>
-            <p> <font color="#800000"> <b> Scheduled Hr. </b> </p>
+            <p> <font color="#800000"> <b> Utilized Hr. </b> </p>
             <tr>
-                  <td>Scheduled Hr. Check <br></td> 
-                <td><input type="number" step=".01" id="UTL_I" name="UTL-I" placeholder='UTL. -  I'   title="UTL. -  I" required  disabled></td>
-                <td><input type="number" step=".01" id="UTL_II" name="UTL-II" placeholder='UTL. -  II'  title="UTL. -  II" required disabled ></td>
-                <td><input type="number" step=".01" id="UTL_III" name="UTL-III" placeholder='UTL. -  III'  title="UTL. -  III" required disabled></td>
-                <td><input type="number" step=".01" id="UTL_onDate" name="UTL-ON-DATE" placeholder='UTL. - ON-DATE'  title="UTL. - ON-DATE" disabled ></td>
-                <td><input type="number" step=".01" id="UTL_cumm" name="UTL-CUM" placeholder='UTL. - CUM' title="UTL. - CUM" disabled > </td>
+                     <td>UTL.<br>
+                         6550/6650-CR <br>
+                     </td>
+                <td><input type="number" step=".01" id="UTL_I" name="UTL-I" placeholder='UTL. -  I'   value="0"  pattern="^\d*(\.\d{0,2})?$"  title="UTL. -  I"   disabled onblur="calculateSum(this)"></td>
+                <td><input type="number" step=".01" id="UTL_II" name="UTL-II" placeholder='UTL. -  II'  value="0"   pattern="^\d*(\.\d{0,2})?$" title="UTL. -  II"   disabled onblur="calculateSum(this)"></td>
+                <td><input type="number" step=".01" id="UTL_III" name="UTL-III" placeholder='UTL. -  III'  value="0"  pattern="^\d*(\.\d{0,2})?$"  title="UTL. -  III"   disabled ></td>
+                 <td><input type="number" step=".01" id="UTL_onDate" name="UTL-onDate" placeholder='UTL. - ON-DATE'  title="UTL. - ON-DATE" disabled ></td>
+                <td><input type="number" step=".01" id="UTL_cumm" name="UTL-cum" placeholder='UTL. - CUM'  value="0" title="UTL. - CUM" disabled > </td>
             </tr>
       </tbody>
-       </table>
+       </table>        
+    
+    <br>
+        
+    <article>
+            <p> <font color="#800000"> <b> Scheduled Hr. </b> </p>
+           
+            <mark> SHIFT I - 8hr. / </mark>   
+             <mark> SHIFT II - 8hr. / </mark>  
+              <mark> SHIFT III - 8hr. </mark>  
+            
      <center>
-       <button type="submit" class='btn btn-primary btn-sm mr-3'>SUBMIT</button> 
+       <button type="submit" class='btn btn-success btn-sm mr-3'>SUBMIT</button> 
        <a  href="productionmenu.html">Go Back</a>
      </center>             
    </form>
@@ -155,26 +141,64 @@ and open the template in the editor.
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
     <script type="text/javascript">
+        const SCHEDULED_HR =8;
         
-        function calculateSum(field) {                
+        //update the ondate feed value based on change in shift's feed
+        function calculateOnDateFeed(field) {   
                 let currentRow = $(field).closest("tr");
-                let first =  parseInt($("input[id$='_I']",currentRow).val());
-                let second =  parseInt($("input[id$='_II']",currentRow).val());
-                let third =  parseInt($("input[id$='_III']",currentRow).val());
-                
-                if(isNaN(first)) {
-                    first =0;
-                }
-                if(isNaN(second)) {
-                    second =0;
-                }
-                if(isNaN(third)) {
-                    third =0;
-                }
+                let first =  parseInt($("input[id$='_I']",currentRow).val()) ||0 ;
+                let second =  parseInt($("input[id$='_II']",currentRow).val()) ||0;
+                let third =  parseInt($("input[id$='_III']",currentRow).val())||0;              
                 let calOnDate = first + second + third;
                 $("input[id$='_onDate']",currentRow).val(calOnDate);
-            } 
-        
+         } 
+         
+        //update the ondate stoppage value based on change in shift's stoppage
+        function calculateOnDateStoppage(field) {   
+            let currentRow = $(field).closest("tr");
+            let first =  parseFloat($("input[name$='-I']",currentRow).val()) ||0 ;
+            let second =  parseFloat($("input[name$='-II']",currentRow).val()) ||0;
+            let third =  parseFloat($("input[name$='-III']",currentRow).val())||0;              
+            let calOnDate = first + second + third;
+            $("input[name$='-onDate']",currentRow).val(calOnDate.toFixed(2));
+         } 
+          
+          //calculates total of the stoppages for the shift
+            function calTotalStoppage(curObj) { 
+                let total=0;
+                let currentName = $(curObj).prop("name");
+                let stoppageFields = $(`[name="${currentName}"]`).not(":first");
+                stoppageFields.each((index,stoppage) => {
+                 //console.log(stoppage);
+                  total += parseFloat(stoppage.value)||0;
+                 });
+                 
+                if(total > SCHEDULED_HR ){
+                 alert(`Verify that the total stoppages should not be more than ${SCHEDULED_HR} hrs`);  
+                 $(curObj).val('');
+                 return false;
+                }
+                return total.toFixed(2);
+               }
+            
+            //updates the utilisation hour for the shfit
+            function calTotalUtil(curObj) {
+                let utilHr = (SCHEDULED_HR - calTotalStoppage(curObj)).toFixed(2);
+                let currentShift = $(curObj).attr("shift");
+                
+                document.getElementById(`UTL_${currentShift}`).value = utilHr;
+                
+                let utilI = document.querySelector("#UTL_I").value;
+                let utilII = document.querySelector("#UTL_II").value;
+                let utilIII = document.querySelector("#UTL_III").value;
+                let utilOnDate = document.querySelector("#UTL_onDate");
+                console.log(utilI); console.log(utilII);console.log(utilIII);
+                let totalUtil = parseFloat(utilI) +parseFloat(utilII)+parseFloat(utilIII);
+
+                utilOnDate.value = totalUtil.toFixed(2);
+           }     
+   
+    
         function checkExist(compareText) {
          let isExist = false;
          $("#tblStoppages tbody tr").find("td:first").each( (index,column) => { 
@@ -214,7 +238,12 @@ and open the template in the editor.
             if(countRows <3) { //one header row , second hidden row
                 $("#tblStoppages").addClass('hide');                
             }
-            
+            let firstShiftObj = $(row).find("td:nth-child(2) > input",row) ;
+            let secondShiftObj = $(row).find("td:nth-child(3)> input",row) ;
+            let thirdShiftObj = $(row).find("td:nth-child(4)> input",row) ;
+            calTotalUtil(firstShiftObj);
+            calTotalUtil(secondShiftObj);
+            calTotalUtil(thirdShiftObj);
         }    
                 
                    
