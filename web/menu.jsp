@@ -54,7 +54,7 @@ and open the template in the editor.
             </div>
         </div>
         <div class="container">
-       <center><h1><u><font color="green">DAILY PRODUCTION & DESPATCH DETAILS</font></u></h1></center>
+       <center><h1><u><font color="green">DAILY PRODUCTION & DISPATCH DETAILS</font></u></h1></center>
         </div>
        <br>
        <center>
@@ -62,7 +62,7 @@ and open the template in the editor.
        </center>
        <br>
        <center>
-                <a class='btn btn-success' href="MINE CP-14.html" target="_top">DESPATCH DETAILS</a>
+                <a class='btn btn-success' href="MINE CP-14.html" target="_top">DISPATCH DETAILS</a>
        </center>
        
         <script   src="https://code.jquery.com/jquery-3.4.1.js"   ></script>
